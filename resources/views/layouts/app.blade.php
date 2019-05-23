@@ -75,10 +75,10 @@
 
         <main class="py-4 container">
             <div class="row justify-content-md-center">
-                <ul class="list-group col col-3">
-                    <a href="{{ route('reciever.index') }}" class="list-group-item list-group-item-action {{ Request::is('reciever*') ? 'active' : '' }}">Ontvanger</a>
-                    <a href="{{ route('mail.index') }}" class="list-group-item list-group-item-action {{ Request::is('mail*') ? 'active' : '' }}">Mail</a>
-                </ul>
+                @auth
+                    @include('partials.menu')
+                @endauth
+
                 <div class="content col col-9">
                     @yield('content')
                 </div>
