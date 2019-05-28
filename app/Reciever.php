@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Mail\RecieverMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
@@ -34,5 +36,15 @@ class Reciever extends Model
                               ->orWhere('email', 'like', "%{$search}%");
             });
         }
+    }
+
+    /**
+     * Send the mail to the reciever
+     *
+     * @param  App\Mailing  $mail
+     * @return void
+     */
+    public function sendMailing($mail) {
+        Mail::to($this)->queue(new RecieverMail($mail));
     }
 }
